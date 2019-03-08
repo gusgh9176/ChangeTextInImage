@@ -1,0 +1,29 @@
+1. 이미지 변수에 넣기	https://076923.github.io/posts/Python-opencv-3/
+2. 이미지 크기 조절	https://076923.github.io/posts/Python-opencv-8/
+3. 이미지 자르기	https://076923.github.io/posts/Python-opencv-9/
+4. 이미지 흑백변환	https://076923.github.io/posts/Python-opencv-10/
+5. 이미지 이진화	https://076923.github.io/posts/Python-opencv-12/
+			https://opencv-python.readthedocs.io/en/latest/doc/09.imageThresholding/imageThresholding.html
+6. 이미지 외곽선 따기	https://076923.github.io/posts/Python-opencv-14/
+7. 이미지 노이즈 제거	https://opencv-python.readthedocs.io/en/latest/doc/12.imageMorphological/imageMorphological.html
+8. cannyEdge		https://opencv-python.readthedocs.io/en/latest/doc/13.imageGradient/imageGradient.html?highlight=canny%20edge
+9. contours		https://opencv-python.readthedocs.io/en/latest/doc/15.imageContours/imageContours.html
+10. contours 응용	https://m.blog.naver.com/PostView.nhn?blogId=samsjang&logNo=220516822775&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+11. contours 사각형으로 https://opencv-python.readthedocs.io/en/latest/doc/16.imageContourFeature/imageContourFeature.html
+12. 작은 사각형 제거	https://opencv-python.readthedocs.io/en/latest/doc/17.imageContourProperty/imageContourProperty.html
+13. CNN			http://bcho.tistory.com/1149\
+14. R-CNN		https://blog.lunit.io/2017/06/01/r-cnns-tutorial/
+			https://tensorflow.blog/2017/06/05/from-r-cnn-to-mask-r-cnn/
+15. 텐서플로우		https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/mnist/tf/
+16. selective search	https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/
+17. 텐서플로우-gpu 설치	https://m.blog.naver.com/chandong83/221112939772
+18. 체크포인트 저장	https://www.tensorflow.org/tutorials/keras/save_and_restore_models?hl=ko
+19. EMNIST		https://github.com/j05t/emnist/blob/master/emnist.ipynb
+20. EMNIST 불러오기	https://stackoverflow.com/questions/50890713/reading-emnist-dataset
+			http://www.sturdylad.co.kr/scikit-learn-model-evaluation/
+21. EMNIST		https://github.com/Josh-Payne/cs230/blob/master/Alphanumeric-Augmented-CNN/augmented-cnn.py
+22. keras 에러		https://github.com/keras-team/keras/issues/10855
+
+대협			https://bcho.tistory.com/1149
+
+해야할거 자른 이미지 글자대로 자르고 28*28 맞춰서 전달하기
