@@ -49,6 +49,7 @@ We work this on Anaconda3
   (1) SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
   
   (2) reference.txt - 코드를 만드는데 도움 받은 페이지 주소 목록
+  
 2. ChangeTextInImage/text_recog_module/
   
   (1) jpg.ipynb - keras 사용 모델 훈련 주피터 파일
