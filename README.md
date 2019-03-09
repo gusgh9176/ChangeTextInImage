@@ -20,16 +20,16 @@ We work this on Anaconda3
 
 ## folder information
 1. ChangeTextInImage/image/
-  1) oriImage - 원본 이미지
-  2) trainImage - 자르기, 그레이스케일, 이진화 이미지
-  3) trainImage2 - 자르기, 그레이스케일, 이진화, laplacian, resize 이미지
+  1 - oriImage - 원본 이미지
+  2 - trainImage - 자르기, 그레이스케일, 이진화 이미지
+  3 - trainImage2 - 자르기, 그레이스케일, 이진화, laplacian, resize 이미지
 
 2. ChangeTextInImage/.ipynb_checkpoints/
   - 주피터 파일 체크포인트 저장
 
 3. ChangeTextInImage/text_recog_module/
-  1) negative - negative Image (CNN) label = 1
-  2) positive - positive Image (CNN) label = 0
+  1 - negative - negative Image (CNN) label = 1
+  2 - positive - positive Image (CNN) label = 0
 
 
 ## file information
@@ -37,7 +37,7 @@ We work this on Anaconda3
 @@ None .md file information
 
 1. ChangeTextInImage/
-  1) SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
-  2) reference.txt - 코드를 만드는데 도움 받은 페이지 주소 목록
+  1 - SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
+  2 - reference.txt - 코드를 만드는데 도움 받은 페이지 주소 목록
 2. ChangeTextInImage/text_recog_module/
-  1) jpg.ipynb - keras 사용 모델 훈련 주피터 파일
+  1 - jpg.ipynb - keras 사용 모델 훈련 주피터 파일
