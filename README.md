@@ -17,6 +17,8 @@ pip install --upgrade numpy
 ## cautions
 We work this on Anaconda3
 
+python 3.6
+
 
 ## folder information
 1. ChangeTextInImage/image/
