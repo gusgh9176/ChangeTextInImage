@@ -5,4 +5,6 @@
 3. 모든 파일들은 확장자가 같아야합니다.
 ## Our training & test set
 제가 사용한 training & test set은 다음과 같은 위치에 업로드 되어있습니다.
-[클릭하여 열기](https://www.dropbox.com/sh/7qnendtdnjlfzyb/AABL_m7rVLCutqDjWc26rwxia?dl=0)
+[training & test set](https://www.dropbox.com/sh/7qnendtdnjlfzyb/AABL_m7rVLCutqDjWc26rwxia?dl=0)
+[Model](https://www.dropbox.com/sh/50pl0wxihf2ou4x/AABDQxS4PUYJ9Tf2oqHVDCuCa?dl=0)
+[documentation](https://www.dropbox.com/sh/0s1wgvde1x4vz2p/AAAYAwWrgaSP7ID46Sy7PhFba?dl=0)
