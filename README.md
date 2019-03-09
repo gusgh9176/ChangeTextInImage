@@ -1,4 +1,4 @@
-# TextChangeInImage
+# ChangeTextInImage
 Case Converter
 reference
 1. https://github.com/Josh-Payne/cs230/blob/master/Alphanumeric-Augmented-CNN/augmented-cnn.py
