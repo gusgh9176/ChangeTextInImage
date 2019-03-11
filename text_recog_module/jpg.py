@@ -50,7 +50,7 @@ for element in tr_sfl_num:
         tmp_str = str("./positive/") + file_list[element]
     else :
         tmp_str = str("./negative/") + file_list[element]
-    x_train.append(cv2.imread(tmp_str))
+    x_train.append(cv2.imread(tmp_str, cv2.IMREAD_GRAYSCALE))
     y_train.append(y_data[element])
     
 for element in ts_sfl_num:
@@ -58,7 +58,7 @@ for element in ts_sfl_num:
         tmp_str = str("./positive/") + file_list[element]
     else :
         tmp_str = str("./negative/") + file_list[element]
-    x_test.append(cv2.imread(tmp_str))
+    x_test.append(cv2.imread(tmp_str, cv2.IMREAD_GRAYSCALE))
     y_test.append(y_data[element])
 
 
@@ -68,6 +68,8 @@ for element in ts_sfl_num:
 for i in range(len(x_train)):
     x_train[i] = cv2.resize(x_train[i], (200, 200))
     x_train[i] = x_train[i] / 255
+    
+print(x_train[1].shape)
 
 for i in range(len(x_test)):
     x_test[i] = cv2.resize(x_test[i], (200, 200))
@@ -76,11 +78,11 @@ for i in range(len(x_test)):
 x_train= np.asarray(x_train)
 x_test = np.asarray(x_test)
     
-x_train = x_train.reshape(len(y_train),200,200,3)
-x_test = x_test.reshape(len(y_test),200,200,3)
+x_train = x_train.reshape(len(y_train),200,200,1)
+x_test = x_test.reshape(len(y_test),200,200,1)
 
-y_train = keras.utils.to_categorical(y_train, 3)
-y_test = keras.utils.to_categorical(y_test, 3)
+y_train = keras.utils.to_categorical(y_train, 2)
+y_test = keras.utils.to_categorical(y_test, 2)
 
 
 # In[4]:
@@ -89,14 +91,14 @@ y_test = keras.utils.to_categorical(y_test, 3)
 #create model
 model = Sequential()
 #add model layers
-model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(200, 200, 3)))
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(200, 200, 1)))
 model.add(Conv2D(32, (3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
-model.add(Dense(3, activation='softmax'))
+model.add(Dense(2, activation='softmax'))
 
 
 # In[5]:
@@ -106,7 +108,7 @@ model.compile(loss='binary_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
 
-model.fit(x_train, y_train,batch_size=100,epochs=5, verbose=1)
+model.fit(x_train, y_train,batch_size=16,epochs=20, verbose=1)
 
 
 # In[6]:
@@ -143,8 +145,4 @@ model.evaluate( x_test, y_test)
 #print("Loaded model from disk")
 
 #loaded_model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
-
-#score = loaded_model.evaluate(X,Y,verbose=0)
-
-#print("%s : %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
 
