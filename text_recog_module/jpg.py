@@ -101,17 +101,17 @@ model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
 
 
-# In[5]:
+# In[ ]:
 
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
 
-model.fit(x_train, y_train,batch_size=16,epochs=20, verbose=1)
+model.fit(x_train, y_train,batch_size=16,epochs=20, verbose=1, validation_split=0.2, shuffle=True)
 
 
-# In[6]:
+# In[ ]:
 
 
 model_json = model.to_json()
@@ -119,20 +119,20 @@ with open("model.json", "w") as json_file :
     json_file.write(model_json)
 
 
-# In[7]:
+# In[ ]:
 
 
 model.save_weights("model.h5")
 print("Saved model to disk")
 
 
-# In[8]:
+# In[ ]:
 
 
 model.evaluate( x_test, y_test)
 
 
-# In[9]:
+# In[ ]:
 
 
 #from keras.models import model_from_json
