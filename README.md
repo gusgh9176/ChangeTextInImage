@@ -53,7 +53,7 @@ keras 2.2.4
 
 1. ChangeTextInImage/
   
-  (1) module_link.py - SaveImage.py 파일과 jpg.py 파일 코드를 합쳐둔것
+  (1) module_link.py - 원본 이미지를 넣으면 말풍선을 찾아서 keras 로 학습시킨 모델을 통과시켜 판별해 반환하는 파이썬 파일
   
   (2) reference.txt - 코드를 만드는데 도움 받은 페이지 주소 목록
   
