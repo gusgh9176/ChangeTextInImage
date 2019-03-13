@@ -16,8 +16,9 @@ pip install --upgrade numpy
 
 ## cautions
 We work this on Anaconda3
-
-python 3.6
+python 3.6.8
+opencv 4.0.0
+keras 2.2.4
 
 
 ## folder information
@@ -38,6 +39,10 @@ python 3.6
   (1) negative - negative Image (CNN) label = 1
   
   (2) positive - positive Image (CNN) label = 0
+  
+4. ChangeTextInImage/target_img_extract_module/
+  
+  (1) 이미지 잘라내는 파이썬 파일 저장되있음
 
 
 ## file information
@@ -48,10 +53,13 @@ python 3.6
 
 1. ChangeTextInImage/
   
-  (1) SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
+  (1) module_link.py - SaveImage.py 파일과 jpg.py 파일 코드를 합쳐둔것
   
   (2) reference.txt - 코드를 만드는데 도움 받은 페이지 주소 목록
   
 2. ChangeTextInImage/text_recog_module/
   
-  (1) jpg.ipynb - keras 사용 모델 훈련 주피터 파일
+  (1) jpg.py - keras 사용 모델 훈련 파이썬 파일
+  
+3. ChangeTextInImage/target_img_extract_module/
+  (1) SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
