@@ -340,5 +340,3 @@ for image in text_image_List:
         
         print('세로',combine_rect_List[o3].y2-combine_rect_List[o3].y1, '가로', combine_rect_List[o3].x2-combine_rect_List[o3].x1)
         combine_image_List.append(combine_dst_gray)
-        
-
