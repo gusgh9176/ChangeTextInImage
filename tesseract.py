@@ -39,7 +39,7 @@ def removeVerticalLines(img, limit):
                 gapX = abs(x2-x1)
                 if(gapY>limit or gapX>limit and limit>0):
                     cv2.line(img, (x1,y1), (x2,y2), (0, 0, 0), 3)
-                    
+
 def change1(img):
     temp_img = img.copy()
     temp_img = cv2.bilateralFilter(temp_img,9,75,75)
