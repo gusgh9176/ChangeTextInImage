@@ -12,6 +12,9 @@ pip install --upgrade h5py
 pip install imutils
 pip install tensorflow
 pip install --upgrade numpy
+pip install pillow
+pip install pytesseract
+
 ```
 
 ## cautions
