@@ -49,6 +49,10 @@ keras 2.2.4
 4. ChangeTextInImage/target_img_extract_module/
   
 >>4.1 이미지 잘라내는 파이썬 파일 저장되있음
+
+5. ChangeTextInImage/text_combine/
+
+>>5.1 말풍선을 자른 이미지에서 말풍선 내부의 문장을 문단별로 나눠서 새로 저장시켜줌
   
 
 
@@ -73,5 +77,14 @@ keras 2.2.4
 
 
 3. ChangeTextInImage/target_img_extract_module/
+
 >>3.1 SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
+
+4. ChangeTextInImage/text_combine/
+
+>>4.1 CombineWord.ipynb - 문현호가 짠 사각형 합치는 알고리즘(사용예정없음)
+
+>>4.2 CombineWord.py - 프로토타입 사각형 알고리즘(구버전)
+
+>>4.3 CombineWord2.py - 완성된 사각형 
 
