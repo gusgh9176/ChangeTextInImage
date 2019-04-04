@@ -25,6 +25,7 @@
 22. keras 에러		https://github.com/keras-team/keras/issues/10855
 23. 원하는 이미지 		https://antilibrary.org/1980
      모델에 넣어서 출력
+24. 사각형 합치기 참조	https://mind3002.blogspot.com/2016/01/cc-opencv-license-plates-recognition.html
 대협			https://bcho.tistory.com/1149
 
 해야할거 자른 이미지 글자대로 자르고 28*28 맞춰서 전달하기
