@@ -63,9 +63,12 @@ def combineRectang(rect_List):
                 rect_List[j] = rect_List[j+1]
                 rect_List[j+1] = temp_rect
     #높이 평균 1번
-    for x in rect_List:
-        avr_height = avr_height + abs(x.y2-x.y1)
-    avr_height = avr_height/len(rect_List)
+    if(len(rect_List)!=0):
+        for x in rect_List:
+             avr_height = avr_height + abs(x.y2-x.y1)
+        avr_height = avr_height/len(rect_List)
+    else:
+        avr_height=20
 
 #     오른쪽으로 인접한 사각형 구할때 필요한 count 값 만들기
     for i in range(len(rect_List)-1):
@@ -97,10 +100,13 @@ def combineRectang(rect_List):
 
 #높이 평균 2번
     avr_height = 0
-    for x in rect_List2:
-        avr_height = avr_height + abs(x.y2-x.y1)
-    avr_height = avr_height/len(rect_List2)
-    print('avr_height : ', avr_height)
+    if(len(rect_List2)):
+        for x in rect_List2:
+            avr_height = avr_height + abs(x.y2-x.y1)
+        avr_height = avr_height/len(rect_List2)
+    else:
+        avr_height=20
+
 # 세로 사각형 합치기
     for i in range(len(rect_List2)-1):
         # 사각형 i와 사각형 j의 가로, 세로 차이
@@ -165,9 +171,11 @@ def combineRectang(rect_List):
 #폴더내의 이미지 배열로 불러옴
 i=1
 j=1
-path_dir = './text_recog_module/positive'
+path_dir = '../text_recog_module/positive'
 file_list = os.listdir(path_dir)
 # 폴더에 있는 이미지를 전부 잘라서 저장함
+
+e=0
 for cutImage in file_list:
     #텐서플로우에 전달할 이미지를 저장할 배열
     image_List=[]
@@ -223,10 +231,17 @@ for cutImage in file_list:
     #     image_List.append(dst_gray)
         image_List.append(dst)
 
-    for i in range(len(image_List)):
-        cv2.imshow("img"+str(i),image_List[i])
+    #for i in range(len(image_List)):
+    #    cv2.imshow("img"+str(i),image_List[i])
     #사각형으로 변현한 Contours 출력
-    cv2.imshow("img", img2)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.imshow("combine_img", img2)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+
+    for passImage in image_List:
+        name = "combine_image"
+        #자른 이미지 저장@@
+        path='negative2/'+name+str(e)
+        cv2.imwrite(path+'.jpg', passImage)
+        e=e+1
 
