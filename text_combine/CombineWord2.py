@@ -171,7 +171,7 @@ def combineRectang(rect_List):
 #폴더내의 이미지 배열로 불러옴
 i=1
 j=1
-path_dir = '../text_recog_module/positive'
+path_dir = '..\text_recog_module\positive/'
 file_list = os.listdir(path_dir)
 # 폴더에 있는 이미지를 전부 잘라서 저장함
 
@@ -184,7 +184,7 @@ for cutImage in file_list:
     rect_List = []
 
     #이미지 변수에 저장
-    path = '../text_recog_module/positive/'
+    path = '..\text_recog_module\positive/'
     src = cv2.imread(path+cutImage, cv2.IMREAD_UNCHANGED)
     if(src is None):
         print("image is None")

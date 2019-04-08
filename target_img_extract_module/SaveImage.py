@@ -103,7 +103,9 @@ for cutImage in file_list:
     for r1 in rect_List:
         switch = True
         for r2 in rect_List:
-                continue
+            if ((rect_List[r1].x1 < rect_List[r2].x1) and (rect_List[r1].x2 >= rect_List[r2].x2)):
+                if ((rect_List[r1].y1 < rect_List[r2].y1) and (rect_List[r1].y2 >= rect_List[r2].y2)):
+                    continue
         #해당 될시 그리는부분 스킵
         if(switch):
             img2 = cv2.rectangle(img2,(r1.x1, r1.y1),(r1.x2, r1.y2),(0,255,0),1)
