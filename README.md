@@ -58,7 +58,7 @@ keras 2.2.4
 
 
 ## file information
->>.ipynb - 주피터 파일
+>>.ipynb - 주피터 파일, 이전 버전 코드 
 
 >>None .md file information
 
@@ -77,7 +77,7 @@ keras 2.2.4
 
 3. ChangeTextInImage/target_img_extract_module/
 
->>3.1 SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일
+>>3.1 SaveImage.py - 원본 이미지를 훈련 모델에 넣기 위해 가공 후 새로운 이미지로 trainImage, trainImage2에 저장하는 파이썬 파일, 겹치는부분 합쳐서 저장
 
 4. ChangeTextInImage/text_combine/
 
