@@ -58,7 +58,7 @@ keras 2.2.4
 
 
 ## file information
->>.ipynb - 주피터 파일
+>>.ipynb - 주피터 파일, 이전 버전 코드 
 
 >>None .md file information
 
