@@ -60,7 +60,7 @@ def change1(img):
 #폴더내의 이미지 배열로 불러옴
 i=1
 j=1
-path_dir = '../Image/oriImage2/'
+path_dir = '../Image/oriImage/'
 file_list = os.listdir(path_dir)
 # 폴더에 있는 이미지를 전부 잘라서 저장함
 number = 1
@@ -74,7 +74,7 @@ for cutImage in file_list:
     rect_List3=[]
     print(cutImage)
     #이미지 변수에 저장        
-    path = '../Image/oriImage2/'
+    path = '../Image/oriImage/'
     src = cv2.imread(path+cutImage, cv2.IMREAD_UNCHANGED)
     
     #drawContours 가 원본이미지를 변경하기에 이미지 복사
@@ -102,32 +102,7 @@ for cutImage in file_list:
         #rectangle 좌표들 배열에 저장
         rect_List.append(rectang(x, y, x+w, y+h))
 
-    height , width, channel = src.shape
     for r1 in rect_List:
-        if(((r1.x2-r1.x1)<width*0.4)and((r1.y2-r1.y1)<height*0.4)):
-            rect_List2.append(rectang(r1.x1, r1.y1, r1.x2, r1.y2))
-
-    #사각형 내부의 사각형 제거. 가로,세로 좌표가 다른 사각형 내부에 포함되면 그려지지않게함
-    for r1 in rect_List2:
-        check=0
-        if(r1.live==1):
-            for r2 in rect_List2:
-                if(r2.live==1):
-                    if (((r1.x1 < r2.x1) and (r2.x1 < r1.x2)) or ((r1.x1 < r2.x2)and (r2.x2< r1.x2))):
-                        if (((r1.y1 < r2.y1) and (r2.y1 < r1.y2)) or ((r1.y1 < r2.y2)and (r2.y2< r1.y2))):
-                            r2.live=0
-                            r1.x1=min(r1.x1, r2.x1)
-                            r1.y1=min(r1.y1, r2.y1)
-                            r1.x2=max(r1.x2, r2.x2)
-                            r1.y2=max(r1.y2, r2.y2)
-                            check=1
-    for r1 in rect_List2:
-        if (r1.live == 1):
-            rect_List3.append(rectang(r1.x1, r1.y1, r1.x2, r1.y2))
-        #해당 될시 그리는부분 스킵
-
-
-    for r1 in rect_List3:
         img2 = cv2.rectangle(img2,(r1.x1, r1.y1),(r1.x2, r1.y2),(0,255,0),1)
     
         #배열에 텐서플로우에 전달할 이미지 저장
