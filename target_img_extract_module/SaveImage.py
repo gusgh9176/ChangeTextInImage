@@ -60,7 +60,7 @@ def change1(img):
 #폴더내의 이미지 배열로 불러옴
 i=1
 j=1
-path_dir = '../Image/oriImage/'
+path_dir = '../Image/Spider_Man/'
 file_list = os.listdir(path_dir)
 # 폴더에 있는 이미지를 전부 잘라서 저장함
 number = 1
@@ -74,7 +74,7 @@ for cutImage in file_list:
     rect_List3=[]
     print(cutImage)
     #이미지 변수에 저장        
-    path = '../Image/oriImage/'
+    path = '../Image/Spider_Man/'
     src = cv2.imread(path+cutImage, cv2.IMREAD_UNCHANGED)
     
     #drawContours 가 원본이미지를 변경하기에 이미지 복사

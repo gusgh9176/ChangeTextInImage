@@ -15,8 +15,7 @@ import os
 class rectang:
     x1=0
     y1=0
-    x2=0
-    y2=0
+    x2=0    y2=0
     live = 1 # 0 이 되면 지울 사각형
     def __init__(self, x1, y1, x2, y2):
         self.x1=x1
@@ -39,7 +38,7 @@ def change1(img):
     canny = cv2.Canny(th,180,250, apertureSize = 5) 
     return canny
 # 작은 사각형 합쳐서 큰 사각형 합치는 함수
-def combineRectang(rect_List):
+def combineRectang(rect_List, img):
 
     avr_height = 0
     #   사각형 내부 사각형 live = 0 만듬
@@ -69,6 +68,11 @@ def combineRectang(rect_List):
         avr_height = avr_height/len(rect_List)
     else:
         avr_height=20
+
+    for r1 in rect_List:
+        img = cv2.rectangle(img, (r1.x1, r1.y1), (r1.x2, r1.y2), (255, 0, 0), 1)
+    cv2.imshow("combine_img", img)
+    cv2.waitKey(0)
 
 #     오른쪽으로 인접한 사각형 구할때 필요한 count 값 만들기
     for i in range(len(rect_List)-1):
@@ -106,6 +110,11 @@ def combineRectang(rect_List):
         avr_height = avr_height/len(rect_List2)
     else:
         avr_height=20
+
+    for r1 in rect_List2:
+        img = cv2.rectangle(img, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 0, 255), 1)
+    cv2.imshow("combine_img", img)
+    cv2.waitKey(0)
 
 # 세로 사각형 합치기
     for i in range(len(rect_List2)-1):
@@ -148,6 +157,8 @@ def combineRectang(rect_List):
     for x in rect_List2:
         if(x.live==1):
             rect_List3.append(x);
+    '''
+    # 겹치는 부분 합치는 영역 일단은 사용 안 할 거다.
     for r1 in range(len(rect_List3)):
         for r2 in range(len(rect_List3)):
             if (r1 == r2):
@@ -163,7 +174,15 @@ def combineRectang(rect_List):
         if (x.live == 1):
             rect_List4.append(x);
     return rect_List4
+    '''
+    for r1 in rect_List3:
+        img = cv2.rectangle(img, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 0), 1)
 
+    cv2.imshow("combine_img", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    return rect_List3
 
 # In[ ]:
 
@@ -205,12 +224,13 @@ for cutImage in file_list:
     #그림에 Contours 그림
     img1=cv2.drawContours(img1, contours, -1, (0,255,0),1)
     #Contours를 사각형으로 만듬
+
     for cnt in contours:
         
         # 정해진 크기가 아닌 사격형 Contours 그리지 않음
         x, y, w, h = cv2.boundingRect(cnt)
         aspect_ratio = float(w)/h
-        if (h<10) or (h>30) or (w>50):
+        if (h<15) or (h>50) or (w>40):
             continue
         if (aspect_ratio>1.5) and(aspect_ratio<=0.2) :
             continue
@@ -219,10 +239,9 @@ for cutImage in file_list:
         rect_List.append(rectang(x, y, x+w, y+h))
 
         #######중심함수
-    rect_List=combineRectang(rect_List3)
+    rect_List=combineRectang(rect_List, img2)
 
     for o3 in range(len(rect_List)):
-        img2 = cv2.rectangle(img2,(rect_List[o3].x1, rect_List[o3].y1),(rect_List[o3].x2, rect_List[o3].y2),(0,255,0),1)
     
         #배열에 텐서플로우에 전달할 이미지 저장
         dst = src.copy()
@@ -237,9 +256,6 @@ for cutImage in file_list:
     #for i in range(len(image_List)):
     #    cv2.imshow("img"+str(i),image_List[i])
     #사각형으로 변현한 Contours 출력
-    cv2.imshow("combine_img", img2)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     '''
     for passImage in image_List:
         name = "combine_image"

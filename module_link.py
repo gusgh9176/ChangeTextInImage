@@ -63,6 +63,22 @@ def change1(img):
     return canny
 
 
+def change2(img):
+    temp_img = img.copy()
+
+    # 노이즈 제거 위한 커널(erode)
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 1))
+    # 이미지 grayscale
+    #     gray = cv2.cvtColor(temp_img, cv2.COLOR_BGR2GRAY)
+    erode = cv2.erode(temp_img, kernel, iterations=2)
+
+    # 이진화
+    #     ret1, th = cv2.threshold(dilation,127,255,cv2.THRESH_BINARY)
+    ret1, th = cv2.threshold(erode, 127, 255, cv2.THRESH_BINARY)
+    canny = cv2.Canny(th, 180, 250, apertureSize=5)
+    return canny
+
+
 # 작은 사각형 합쳐서 큰 사각형 합치는 함수
 def combineRectang(rect_List):
     avr_height = 0
@@ -126,16 +142,7 @@ def combineRectang(rect_List):
     print('avr_height : ', avr_height)
     # 세로 사각형 합치기
     for i in range(len(rect_List2) - 1):
-        # 사각형 i와 사각형 j의 가로, 세로 차이
-        dif_x = 0
-        dif_y = 0
-        # 맨위측 과 맨아래측 사각형 x, y 좌표 차이
-        plate_height = 0
-        # 바로 오른쪽 사각형과의 x 좌표 차이를 구하는 변수 구해야함
-        k = 0
-        # k와 j의 x와 y 좌표 차이 (바로 맞닿은 사각형끼리의 차이 k와 j는 계속 변함)
-        side_x = 0
-        side_y = 0
+
         for j in range((i + 1), len(rect_List2)):
             plate_height = 0
             switch = False
@@ -165,6 +172,7 @@ def combineRectang(rect_List):
     for x in rect_List2:
         if (x.live == 1):
             rect_List3.append(x);
+    '''
     for r1 in range(len(rect_List3)):
         for r2 in range(len(rect_List3)):
             if (r1 == r2):
@@ -179,32 +187,32 @@ def combineRectang(rect_List):
     for x in rect_List3:
         if (x.live == 1):
             rect_List4.append(x);
-    return rect_List4
+    '''
+    return rect_List3
 
 
 # In[88]:
 
 
 #불러올 이미지 주소 가져오기
-path = '12.jpg'
-
+path = './image/Spider_Man/'
+f_Name = 'Spider-Man - Far From Home Prelude 02 (of 02)-012.jpg'
 
 # In[89]:
 
 
 #텐서플로우에 전달할 이미지를 저장할 배열
 image_List=[]
-image_List2=[]
 #rectangle 배열
 rect_List = []
 
 #이미지 변수에 저장
-src = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+src = cv2.imread(path+f_Name, cv2.IMREAD_UNCHANGED)
 
 #drawContours 가 원본이미지를 변경하기에 이미지 복사
 img1 = src.copy() #처음 Contours 그려짐
 img2 = src.copy() #Rectangle Contours 그려짐
-img3 = src.copy() #정리후 Rectangle Contours 그려짐
+img3 = src.copy() #check
 
 
 # In[90]:
@@ -247,7 +255,13 @@ for r1 in rect_List:
         dst_laplacian = cv2.Laplacian(dst_gray, cv2.CV_8U)
         dst_laplacian = cv2.resize(dst_laplacian, dsize=(100, 100), interpolation=cv2.INTER_AREA)
         image_List.append(dst_gray)
-        image_List2.append(dst_laplacian)
+
+for r1 in rect_List:
+    img = cv2.rectangle(img3, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 0, 0), 1)
+
+cv2.imshow("check1", img3)
+cv2.waitKey(0)
+
 
 json_file = open("model.json", "r")
 loaded_model_json = json_file.read()
@@ -261,7 +275,7 @@ loaded_model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['acc
 for i in range(len(image_List)):
     image_List[i] = cv2.resize(image_List[i], (200, 200))
     image_List[i] = image_List[i] / 255
-    
+
 image_List = np.asarray(image_List)
 image_List = image_List.reshape(len(image_List), 200, 200, 1)
 
@@ -286,113 +300,146 @@ for i in range(len(y)):
     if y[i] == 0:
         dst = src.copy()
         dst = src[rect_List[i].y1:rect_List[i].y2, rect_List[i].x1:rect_List[i].x2]
+        text_rect_List.append(rectang(rect_List[i].x1, rect_List[i].y1, rect_List[i].x2, rect_List[i].y2))
         text_image_List.append(dst)
 print(text_image_List)
 
+for r1 in text_rect_List:
+    img = cv2.rectangle(img3, (r1.x1, r1.y1), (r1.x2, r1.y2), (255, 0, 0), 5)
+
+cv2.imshow("check1", img3)
+cv2.waitKey(0)
 
 # In[93]:
 
-
-#텐서플로우에 전달할 이미지를 저장할 배열
-combine_image_List = []
-#rectangle 배열
-combine_rect_List = []
 #이미지 변수에 저장
 for image in text_image_List:
+    # 텐서플로우에 전달할 이미지를 저장할 배열
+    # rectangle 배열
+    combine_image_List = []
+    combine_rect_List = []
     combine_src = image
     #drawContours 가 원본이미지를 변경하기에 이미지 복사
     combine_img1 = combine_src.copy() #처음 Contours 그려짐
     combine_img2 = combine_src.copy() #Rectangle Contours 그려짐
     #CannyEdge
-    combine_canny = change1(combine_src)
+    combine_canny = change2(combine_src)
 
     #Contours 찾음
     combine_contours, combine_hierachy = cv2.findContours(combine_canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     #그림에 Contours 그림
     combine_img1=cv2.drawContours(combine_img1, combine_contours, -1, (0,255,0),1)
+
+
     #Contours를 사각형으로 만듬
     for cnt in combine_contours:
-        
+
         # 정해진 크기가 아닌 사격형 Contours 그리지 않음
         x, y, w, h = cv2.boundingRect(cnt)
         aspect_ratio = float(w)/h
-        if (h<10) or (h>100) or (w>100):
+        if (h<15) or (h>50) or (w>40):
             continue
         if (aspect_ratio>1.5) and(aspect_ratio<=0.2) :
             continue
-    
         #rectangle 좌표들 배열에 저장
         combine_rect_List.append(rectang(x, y, x+w, y+h))
-    
+
         #######중심함수
-    combine_rect_List=combineRectang(combine_rect_List)
-    
+    if(len(combine_rect_List)!=0):
+        combine_rect_List=combineRectang(combine_rect_List)
+
     for o3 in range(len(combine_rect_List)):
-        combine_img2 = cv2.rectangle(combine_img2,(combine_rect_List[o3].x1, combine_rect_List[o3].y1),(combine_rect_List[o3].x2, combine_rect_List[o3].y2),(0,255,0),1)
-        
+        combine_img2 = cv2.rectangle(combine_img2,(combine_rect_List[o3].x1,combine_rect_List[o3].y1),(combine_rect_List[o3].x2, combine_rect_List[o3].y2),(0,255,0),1)
+
         #배열에 텐서플로우에 전달할 이미지 저장
         combine_dst = combine_src.copy()
         combine_dst = combine_src[combine_rect_List[o3].y1:combine_rect_List[o3].y2, combine_rect_List[o3].x1:combine_rect_List[o3].x2]
-        
-        print('세로',combine_rect_List[o3].y2-combine_rect_List[o3].y1, '가로', combine_rect_List[o3].x2-combine_rect_List[o3].x1)
-        combine_image_List.append(combine_dst)
+        comb_gray = cv2.cvtColor(combine_dst, cv2.COLOR_BGR2GRAY)
+        dst_ret, comb_gray = cv2.threshold(comb_gray, 127, 255, cv2.THRESH_BINARY)
+        #print('세로',combine_rect_List[o3].y2-combine_rect_List[o3].y1, '가로', combine_rect_List[o3].x2-combine_rect_List[o3].x1)
+        combine_image_List.append(comb_gray)
 
     #for i in range(len(combine_image_List)):
     #    cv2.imshow("img"+str(i),image_List[i])
-    #사각형으로 변현한 Contours 출력
-    cv2.imshow("img", combine_img2)
+    cv2.imshow("combine_img2", combine_img2)
+    cv2.waitKey(0)
 
-# Config Parser 초기화
-config = configparser.ConfigParser()
-# Config File 읽기
-config.read(os.path.dirname(os.path.realpath(__file__)) + os.sep + 'envs' + os.sep + 'property.ini')
+    '''
+    print("go ? :")
+    go=input()
+    if(go==0):
+        continue
+    '''
 
+    # ln[93]:
 
-# 이미지 -> 문자열 추출
-def ocrToStr(img, outTxtPath, fileName, lang='eng'):  # 디폴트는 영어로 추출
-    # 이미지 경로
-    fileName = str(fileName)
-    bw_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    thresh, bw_img = cv2.threshold(bw_img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-    cv2.imshow("bw_img" + fileName, bw_img)
-    bw_img = Image.fromarray(bw_img)
-    print("------------")
-    txtName = os.path.join(outTxtPath, fileName.split('.')[0])
-    # 추출(이미지파일, 추출언어, 옵션)
-    # preserve_interword_spaces : 단어 간격 옵션을 조절하면서 추출 정확도를 확인한다.
-    # psm(페이지 세그먼트 모드 : 이미지 영역안에서 텍스트 추출 범위 모드)
-    # psm 모드 : https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage
-    outText = pytesseract.image_to_string(bw_img)
+    json_file = open("model2.json", "r")
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+    loaded_model.load_weights("model2.h5")
+    print("Loaded model2 from disk")
+    loaded_model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
 
-    print('+++ OCT Extract Result +++')
-    print('Extract FileName ->>> : ', fileName, ' : <<<-')
-    print('\n\n')
-    # 출력
-    outText = outText.lower()
-    print(outText)
-    # 추출 문자 텍스트 파일 쓰기
-    strToTxt(txtName, outText)
-
-    # 문자열 -> 텍스트파일 개별 저장
-
-
-def strToTxt(txtName, outText):
-    with open(txtName + '.txt', 'w', encoding='utf-8') as f:
-        f.write(outText)
-
-    # 메인 시작
-
-
-if __name__ == "__main__":
-
-    # 텍스트 파일 저장 경로
-    outTxtPath = os.path.dirname(os.path.realpath(__file__)) + config['Path']['OcrTxtPath']
-    # OCR 추출 작업 메인
-    print("사진 갯수 = ", len(combine_image_List))
     for i in range(len(combine_image_List)):
-        # 한글+영어 추출(kor, eng , kor+eng)
-        ocrToStr(combine_image_List[i], outTxtPath, i, 'eng')
+        combine_image_List[i] = cv2.resize(combine_image_List[i], (200, 200))
+        combine_image_List[i] = combine_image_List[i] / 255
 
-cv2.waitKey(0)
+    combine_image_List = np.asarray(combine_image_List)
+    combine_image_List = combine_image_List.reshape(len(combine_image_List), 200, 200, 1)
+
+    # ln[94]:
+
+    #모델에 image를 적용하여 predict class 출력
+    y = loaded_model.predict_classes(combine_image_List)
+    print(y)
+
+    #모델을 거쳐 문단인 이미지만 저장할 배열 생성
+    p_rect_List = []
+    p_image_List = []
+    
+    # ln[95]:
+
+    # predict내부의 값을 가지고 문단이 담긴 이미지 저장
+    for i in range(len(y)):
+        if y[i] == 0:
+            dst = src.copy()
+            dst = src[combine_rect_List[i].y1:combine_rect_List[i].y2, combine_rect_List[i].x1:combine_rect_List[i].x2]
+            p_rect_List.append(rectang(combine_rect_List[i].x1, combine_rect_List[i].y1, combine_rect_List[i].x2, combine_rect_List[i].y2))
+            p_image_List.append(dst)
+    print(text_image_List)
+
+    for r1 in p_rect_List:
+        img = cv2.rectangle(combine_img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 255), 1)
+
+    cv2.imshow("check2", combine_img2)
+    cv2.waitKey(0)
+
+'''
+#모델에 맞게 inputdata를 reform
+for i in range(len(image_List)):
+    image_List[i] = cv2.resize(image_List[i], (200, 200))
+    image_List[i] = image_List[i] / 255
+
+image_List = np.asarray(image_List)
+image_List = image_List.reshape(len(image_List), 200, 200, 1)
+
+txtName='./ocr_result_txt/'+f_Name
+
+f=open(txtName + '.txt', 'w', encoding='utf-8')
+for i in range(len(p_image_List)):
+    fileName=str(i)
+    cv2.waitKey(0)
+    outText = pytesseract.image_to_string(combine_image_List[i])
+    outText = outText.lower()
+
+    print("("+fileName+") >>\n")
+    f.write("("+fileName+") >>\n")
+    f.write(outText)
+    f.write("\n")
+
+f.close()
+'''
+
 cv2.destroyAllWindows()
