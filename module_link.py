@@ -442,6 +442,9 @@ for t_image in temp_image:
     f.write(outText)
     f.write("\n")
 
+    #처리 이후 임시 파일 삭제
+    os.remove(path+t_image)
+
 f.close()
 
 cv2.waitKey(0)
