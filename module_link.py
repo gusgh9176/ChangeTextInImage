@@ -245,8 +245,6 @@ for r1 in rect_List:
             continue
     #해당 될시 그리는부분 스킵
     if(switch):
-        img2 = cv2.rectangle(img2,(r1.x1, r1.y1),(r1.x2, r1.y2),(0,255,0),1)
-
         #배열에 텐서플로우에 전달할 이미지 저장
         dst = src.copy()
         dst = src[r1.y1:r1.y2, r1.x1:r1.x2]
@@ -312,6 +310,7 @@ cv2.waitKey(0)
 
 # In[93]:
 
+count=0
 #이미지 변수에 저장
 for image in text_image_List:
     # 텐서플로우에 전달할 이미지를 저장할 배열
@@ -362,8 +361,8 @@ for image in text_image_List:
 
     #for i in range(len(combine_image_List)):
     #    cv2.imshow("img"+str(i),image_List[i])
-    cv2.imshow("combine_img2", combine_img2)
-    cv2.waitKey(0)
+    #cv2.imshow("combine_img2", combine_img2)
+    #cv2.waitKey(0)
 
     '''
     print("go ? :")
@@ -392,8 +391,11 @@ for image in text_image_List:
     # ln[94]:
 
     #모델에 image를 적용하여 predict class 출력
-    y = loaded_model.predict_classes(combine_image_List)
-    print(y)
+    try:
+        y = loaded_model.predict_classes(combine_image_List)
+    except:
+        continue
+    #print(y)
 
     #모델을 거쳐 문단인 이미지만 저장할 배열 생성
     p_rect_List = []
@@ -404,8 +406,10 @@ for image in text_image_List:
     # predict내부의 값을 가지고 문단이 담긴 이미지 저장
     for i in range(len(y)):
         if y[i] == 0:
-            dst = src.copy()
-            dst = src[combine_rect_List[i].y1:combine_rect_List[i].y2, combine_rect_List[i].x1:combine_rect_List[i].x2]
+            dst = combine_src.copy()
+            dst = combine_src[combine_rect_List[i].y1:combine_rect_List[i].y2, combine_rect_List[i].x1:combine_rect_List[i].x2]
+            cv2.imwrite('./temp_image/'+str(count)+'.jpg', dst)
+            count=count+1
             p_rect_List.append(rectang(combine_rect_List[i].x1, combine_rect_List[i].y1, combine_rect_List[i].x2, combine_rect_List[i].y2))
             p_image_List.append(dst)
     print(text_image_List)
@@ -413,33 +417,32 @@ for image in text_image_List:
     for r1 in p_rect_List:
         img = cv2.rectangle(combine_img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 255), 1)
 
-    cv2.imshow("check2", combine_img2)
-    cv2.waitKey(0)
-
-'''
-#모델에 맞게 inputdata를 reform
-for i in range(len(image_List)):
-    image_List[i] = cv2.resize(image_List[i], (200, 200))
-    image_List[i] = image_List[i] / 255
-
-image_List = np.asarray(image_List)
-image_List = image_List.reshape(len(image_List), 200, 200, 1)
+    #cv2.imshow("check2", combine_img2)
+    #cv2.waitKey(0)
 
 txtName='./ocr_result_txt/'+f_Name
 
 f=open(txtName + '.txt', 'w', encoding='utf-8')
-for i in range(len(p_image_List)):
+path_dir = './temp_image/'
+temp_image = os.listdir(path_dir)
+
+for t_image in temp_image:
+    path = './temp_image/'
+    img = Image.open(path+t_image)
+
     fileName=str(i)
-    cv2.waitKey(0)
-    outText = pytesseract.image_to_string(combine_image_List[i])
+    outText = image_to_string(img)
     outText = outText.lower()
 
-    print("("+fileName+") >>\n")
-    f.write("("+fileName+") >>\n")
+    print("("+t_image+") >>\n")
+    print(outText)
+    print("\n")
+
+    f.write("("+t_image+") >>\n")
     f.write(outText)
     f.write("\n")
 
 f.close()
-'''
 
+cv2.waitKey(0)
 cv2.destroyAllWindows()
