@@ -13,7 +13,9 @@ from keras.models import model_from_json
 from PIL import Image     #pip install pillow
 from pytesseract import * #pip install pytesseract
 import configparser
+from googletrans import Translator
 
+translator=Translator()
 
 # In[87]:
 
@@ -257,8 +259,8 @@ for r1 in rect_List:
 for r1 in rect_List:
     img = cv2.rectangle(img3, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 0, 0), 1)
 
-cv2.imshow("check1", img3)
-cv2.waitKey(0)
+#cv2.imshow("check1", img3)
+#cv2.waitKey(0)
 
 
 json_file = open("model.json", "r")
@@ -300,13 +302,12 @@ for i in range(len(y)):
         dst = src[rect_List[i].y1:rect_List[i].y2, rect_List[i].x1:rect_List[i].x2]
         text_rect_List.append(rectang(rect_List[i].x1, rect_List[i].y1, rect_List[i].x2, rect_List[i].y2))
         text_image_List.append(dst)
-print(text_image_List)
 
 for r1 in text_rect_List:
     img = cv2.rectangle(img3, (r1.x1, r1.y1), (r1.x2, r1.y2), (255, 0, 0), 5)
 
-cv2.imshow("check1", img3)
-cv2.waitKey(0)
+#cv2.imshow("check1", img3)
+#cv2.waitKey(0)
 
 # In[93]:
 
@@ -407,12 +408,11 @@ for image in text_image_List:
     for i in range(len(y)):
         if y[i] == 0:
             dst = combine_src.copy()
-            dst = combine_src[combine_rect_List[i].y1:combine_rect_List[i].y2, combine_rect_List[i].x1:combine_rect_List[i].x2]
+            dst = combine_src[combine_rect_List[i].y1-5:combine_rect_List[i].y2, combine_rect_List[i].x1:combine_rect_List[i].x2]
             cv2.imwrite('./temp_image/'+str(count)+'.jpg', dst)
             count=count+1
             p_rect_List.append(rectang(combine_rect_List[i].x1, combine_rect_List[i].y1, combine_rect_List[i].x2, combine_rect_List[i].y2))
             p_image_List.append(dst)
-    print(text_image_List)
 
     for r1 in p_rect_List:
         img = cv2.rectangle(combine_img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 255), 1)
@@ -426,25 +426,35 @@ f=open(txtName + '.txt', 'w', encoding='utf-8')
 path_dir = './temp_image/'
 temp_image = os.listdir(path_dir)
 
+temp_image.sort()
+
+final_text=''
+
 for t_image in temp_image:
     path = './temp_image/'
     img = Image.open(path+t_image)
 
     fileName=str(i)
-    outText = image_to_string(img)
+    outText = image_to_string(img, lang='eng')
     outText = outText.lower()
 
-    print("("+t_image+") >>\n")
+    print("("+t_image+") >>")
     print(outText)
+
+    final_text=final_text+"("+t_image+") >>\n"+outText+"\n"
+
+    outText=outText.replace('\n', ' ')
+    en_var = translator.translate(outText, dest='ko')
+
+    print("-->")
+    print(en_var.text)
     print("\n")
 
-    f.write("("+t_image+") >>\n")
-    f.write(outText)
-    f.write("\n")
-
+    final_text=final_text+"-->\n"+en_var.text+"\n----------------------------\n"
     #처리 이후 임시 파일 삭제
     os.remove(path+t_image)
 
+f.write(final_text)
 f.close()
 
 cv2.waitKey(0)
