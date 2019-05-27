@@ -214,7 +214,6 @@ src = cv2.imread(path+f_Name, cv2.IMREAD_UNCHANGED)
 #drawContours 가 원본이미지를 변경하기에 이미지 복사
 img1 = src.copy() #처음 Contours 그려짐
 img2 = src.copy() #Rectangle Contours 그려짐
-img3 = src.copy() #check
 
 
 # In[90]:
@@ -243,8 +242,6 @@ for cnt in contours:
 #사각형 내부의 사각형 제거. 가로,세로 좌표가 다른 사각형 내부에 포함되면 그려지지않게함
 for r1 in rect_List:
     switch = True
-    for r2 in rect_List:
-            continue
     #해당 될시 그리는부분 스킵
     if(switch):
         #배열에 텐서플로우에 전달할 이미지 저장
@@ -256,10 +253,10 @@ for r1 in rect_List:
         dst_laplacian = cv2.resize(dst_laplacian, dsize=(100, 100), interpolation=cv2.INTER_AREA)
         image_List.append(dst_gray)
 
-for r1 in rect_List:
-    img = cv2.rectangle(img3, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 0, 0), 1)
+#for r1 in rect_List:
+#    img2 = cv2.rectangle(img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 0, 0), 1)
 
-#cv2.imshow("check1", img3)
+#cv2.imshow("check1", img2)
 #cv2.waitKey(0)
 
 
@@ -291,10 +288,6 @@ print(y)
 text_rect_List = []
 text_image_List = []
 
-
-# In[92]:
-
-
 # predict내부의 값을 가지고 말풍선이 담긴 이미지 저장
 for i in range(len(y)):
     if y[i] == 0:
@@ -304,18 +297,54 @@ for i in range(len(y)):
         text_image_List.append(dst)
 
 for r1 in text_rect_List:
-    img = cv2.rectangle(img3, (r1.x1, r1.y1), (r1.x2, r1.y2), (255, 0, 0), 5)
+    img2 = cv2.rectangle(img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (255, 0, 0), 3)
+cv2.imshow("말풍선 판별", img2)
+cv2.waitKey(0)
 
-#cv2.imshow("check1", img3)
-#cv2.waitKey(0)
+text_rect_List2=[]
+text_image_List2=[]
+i=0
+for r1 in text_rect_List:
+    if(r1.live==1):
+        dst = src[r1.y1:r1.y2, r1.x1:r1.x2]
+        #cv2.imshow("temp", dst)
+        #cv2.waitKey(0)
+        print("point1")
+        j=0
+        for r2 in text_rect_List:
+            if((r2.live==1)and(r1.live==1)and(i!=j)):
+                if(((r1.y1<r2.y2)and(r1.y2>r2.y1))and((r1.x1<r2.x2)and(r1.x2>r2.x1))):
+                    print("point2")
+                    if(((min(r1.y2, r2.y2)-max(r1.y1, r2.y1))>(r1.y2-r1.y1)*0.7)and((min(r1.x2, r2.x2)-max(r1.x1, r2.x1))>(r1.y2-r1.y1)*0.7)):
+                        print("point3")
+                        r1.live=0
+                        r2.x1=min(r1.x1, r2.x1)
+                        r2.x2=max(r1.x2, r2.x2)
+                        r2.y1=min(r1.y1, r2.y1)
+                        r2.y2=max(r1.y2, r2.y2)
+            j=j+1
+    i=i+1
 
-# In[93]:
+
+for r1 in text_rect_List:
+    if(r1.live==1):
+        text_rect_List2.append(r1)
+        img2= cv2.rectangle(img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 0), 3)
 
 count=0
-#이미지 변수에 저장
-for image in text_image_List:
-    # 텐서플로우에 전달할 이미지를 저장할 배열
-    # rectangle 배열
+for r1 in text_rect_List2:
+    dst = src[r1.y1:r1.y2, r1.x1:r1.x2]
+    text_image_List2.append(dst)
+img2=cv2.pyrDown(img2)
+img2=cv2.pyrDown(img2)
+cv2.imshow("말풍선 중복 삭제", img2)
+cv2.waitKey(0)
+
+
+count=0
+#말풍선으로 추출된 사진들 중에서
+for image in text_image_List2:
+    # combine 된 결과물 저장될 배열들
     combine_image_List = []
     combine_rect_List = []
     combine_src = image
@@ -350,7 +379,7 @@ for image in text_image_List:
         combine_rect_List=combineRectang(combine_rect_List)
 
     for o3 in range(len(combine_rect_List)):
-        combine_img2 = cv2.rectangle(combine_img2,(combine_rect_List[o3].x1,combine_rect_List[o3].y1),(combine_rect_List[o3].x2, combine_rect_List[o3].y2),(0,255,0),1)
+        #combine_img2 = cv2.rectangle(combine_img2,(combine_rect_List[o3].x1,combine_rect_List[o3].y1),(combine_rect_List[o3].x2, combine_rect_List[o3].y2),(255,255,0),1)
 
         #배열에 텐서플로우에 전달할 이미지 저장
         combine_dst = combine_src.copy()
@@ -361,7 +390,7 @@ for image in text_image_List:
         combine_image_List.append(comb_gray)
 
     #for i in range(len(combine_image_List)):
-    #    cv2.imshow("img"+str(i),image_List[i])
+    #    cv2.imshow("img"+str(i),combin_image_List[i])
     #cv2.imshow("combine_img2", combine_img2)
     #cv2.waitKey(0)
 
@@ -371,8 +400,6 @@ for image in text_image_List:
     if(go==0):
         continue
     '''
-
-    # ln[93]:
 
     json_file = open("model2.json", "r")
     loaded_model_json = json_file.read()
@@ -389,8 +416,6 @@ for image in text_image_List:
     combine_image_List = np.asarray(combine_image_List)
     combine_image_List = combine_image_List.reshape(len(combine_image_List), 200, 200, 1)
 
-    # ln[94]:
-
     #모델에 image를 적용하여 predict class 출력
     try:
         y = loaded_model.predict_classes(combine_image_List)
@@ -401,8 +426,6 @@ for image in text_image_List:
     #모델을 거쳐 문단인 이미지만 저장할 배열 생성
     p_rect_List = []
     p_image_List = []
-    
-    # ln[95]:
 
     # predict내부의 값을 가지고 문단이 담긴 이미지 저장
     for i in range(len(y)):
@@ -414,19 +437,19 @@ for image in text_image_List:
             p_rect_List.append(rectang(combine_rect_List[i].x1, combine_rect_List[i].y1, combine_rect_List[i].x2, combine_rect_List[i].y2))
             p_image_List.append(dst)
 
-    for r1 in p_rect_List:
-        img = cv2.rectangle(combine_img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 255), 1)
-
+    #for r1 in p_rect_List:
+    #    img = cv2.rectangle(combine_img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 255), 1)
     #cv2.imshow("check2", combine_img2)
     #cv2.waitKey(0)
-
+ 
+ 
 txtName='./ocr_result_txt/'+f_Name
 
 f=open(txtName + '.txt', 'w', encoding='utf-8')
 path_dir = './temp_image/'
 temp_image = os.listdir(path_dir)
 
-temp_image.sort()
+temp_image.sort(key=len)
 
 final_text=''
 
@@ -459,3 +482,4 @@ f.close()
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+

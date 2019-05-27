@@ -16,85 +16,6 @@ like my
 -->
 세상에, 내 소리처럼 들린다.
 ----------------------------
-(10.jpg) >>
-“all right,
-
-this isn’t working
-
-out. i’m going to
-need the suit
-
-. back. s
--->
-"좋아, 이건 잘 작동하지 않아. 나는 양복이 필요할거야. 뒤로. 에스
-----------------------------
-(11.jpg) >>
-and
-i wanted
-you to be
-better.
--->
-나는 네가 더 잘되기를 바랬다.
-----------------------------
-(12.jpg) >>
-i wanted
-to be like
-you.
--->
-나는 너처럼되고 싶었어.
-----------------------------
-(13.jpg) >>
-zip it! the
-adult is
-talking!
--->
-지퍼! 어른이 말하고있다!
-----------------------------
-(14.jpg) >>
-if someone had
-died today, that
-would have been
-" on you! /
--->
-누군가 오늘 죽었 더라면 그것은 "너 였을거야! /
-----------------------------
-(15.jpg) >>
-and if you had
-died, that would
-have been
-” on me. a
--->
-네가 죽었다면 그것은 나에게 있었을 것이다. 에이
-----------------------------
-(16.jpg) >>
-zip it! the
-adult is
-talking!
--->
-지퍼! 어른이 말하고있다!
-----------------------------
-(17.jpg) >>
-if someone had
-died today, that
-would have been
-" on you! /
--->
-누군가 오늘 죽었 더라면 그것은 "너 였을거야! /
-----------------------------
-(18.jpg) >>
-and if you had
-died, that would
-have been
-” on me. a
--->
-네가 죽었다면 그것은 나에게 있었을 것이다. 에이
-----------------------------
-(19.jpg) >>
-i'm
-fifteen
--->
-나는 15 살이다.
-----------------------------
 (2.jpg) >>
 "no, please!
 it’s all i have! i’m
@@ -102,88 +23,6 @@ nothing without
 - this suit! -
 -->
 "아니, 제발! 내가 가진 전부 야! 나는이 옷 없이는 아무것도 아니야! -
-----------------------------
-(20.jpg) >>
-
--->
-
-----------------------------
-(21.jpg) >>
-/ everyone ~
-told me i
-was crazy
-
-to recruit a
-fourteen-
-year-old
-
-7 kida a
--->
-/ 모두 ~ 14 살짜리 7 키다를 모집하는 게 미쳤다고 했어.
-----------------------------
-(22.jpg) >>
-i did listen, ~
-kid. who do you
-think called
-
-twee criic 5
--->
-나는 들었다, ~ 아이. 누가 당신을 twee criic이라고 불렀다고 생각하니? 5
-----------------------------
-(23.jpg) >>
-those weapons were out
-there and i tried to tell
-you, but you didn’t
-ia listen to me! a
--->
-그 무기가 밖에 있었고 당신에게 말하려고했지만, 당신은 내 말을 들어주지 않았습니다! 에이
-----------------------------
-(24.jpg) >>
-" i did listen, ~
-kid. who do you
-think called
-
-the fbiz tl
--->
-"나는 들어 봤어, 꼬마 야. 누가 너를 fbiz tl이라고 생각하니?
-----------------------------
-(25.jpg) >>
-/ everyone ~
-told me i
-was crazy
-
-to recruit a
-fourteen-
-year-old
-
-7 kida a
--->
-/ 모두 ~ 14 살짜리 7 키다를 모집하는 게 미쳤다고 했어.
-----------------------------
-(26.jpg) >>
-those weapons were out
-there and i tried to tell
-you, but you didn’t
-ia listen to me! a
--->
-그 무기가 밖에 있었고 당신에게 말하려고했지만, 당신은 내 말을 들어주지 않았습니다! 에이
-----------------------------
-(27.jpg) >>
-" i did listen, ~
-kid. who do you
-think called
--->
-"나는 들었다, ~ 아이. 누가 너에게 전화를했다고 생각하니?
-----------------------------
-(28.jpg) >>
-
--->
-
-----------------------------
-(29.jpg) >>
-
--->
-
 ----------------------------
 (3.jpg) >>
 i don’t
@@ -224,6 +63,97 @@ what?
 
 ----------------------------
 (9.jpg) >>
+“all right,
+
+this isn’t working
+
+out. i’m going to
+need the suit
+
+. back. s
+-->
+"좋아, 이건 잘 작동하지 않아. 나는 양복이 필요할거야. 뒤로. 에스
+----------------------------
+(10.jpg) >>
+and
+i wanted
+you to be
+better.
+-->
+나는 네가 더 잘되기를 바랬다.
+----------------------------
+(11.jpg) >>
+i wanted
+to be like
+you.
+-->
+나는 너처럼되고 싶었어.
+----------------------------
+(12.jpg) >>
+zip it! the
+adult is
+talking!
+-->
+지퍼! 어른이 말하고있다!
+----------------------------
+(13.jpg) >>
+if someone had
+died today, that
+would have been
+" on you! /
+-->
+누군가 오늘 죽었 더라면 그것은 "너 였을거야! /
+----------------------------
+(14.jpg) >>
+and if you had
+died, that would
+have been
+” on me. a
+-->
+네가 죽었다면 그것은 나에게 있었을 것이다. 에이
+----------------------------
+(15.jpg) >>
+i'm
+fifteen
+-->
+나는 15 살이다.
+----------------------------
+(16.jpg) >>
+those weapons were out
+there and i tried to tell
+you, but you didn’t
+ia listen to me! a
+-->
+그 무기가 밖에 있었고 당신에게 말하려고했지만, 당신은 내 말을 들어주지 않았습니다! 에이
+----------------------------
+(17.jpg) >>
+" i did listen, ~
+kid. who do you
+think called
+
+the fbiz tl
+-->
+"나는 들어 봤어, 꼬마 야. 누가 너를 fbiz tl이라고 생각하니?
+----------------------------
+(18.jpg) >>
+/ everyone ~
+told me i
+was crazy
+
+to recruit a
+fourteen-
+year-old
+
+7 kida a
+-->
+/ 모두 ~ 14 살짜리 7 키다를 모집하는 게 미쳤다고 했어.
+----------------------------
+(19.jpg) >>
+
+-->
+
+----------------------------
+(20.jpg) >>
 
 -->
 
