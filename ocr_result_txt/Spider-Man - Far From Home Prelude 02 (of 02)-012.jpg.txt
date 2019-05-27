@@ -1,124 +1,14 @@
 (0.jpg) >>
-f you're —
-nothing
-without
 
-the suit, you
-shouldn't
-have it.
 -->
-당신이 - 양복이 없다면 아무것도하지 말아야합니다.
+
 ----------------------------
 (1.jpg) >>
-god,
-i sound
-like my
+
 -->
-세상에, 내 소리처럼 들린다.
+
 ----------------------------
 (2.jpg) >>
-"no, please!
-it’s all i have! i’m
-nothing without
-- this suit! -
--->
-"아니, 제발! 내가 가진 전부 야! 나는이 옷 없이는 아무것도 아니야! -
-----------------------------
-(3.jpg) >>
-i don’t
-have any
-other
-clothes
--->
-나는 다른 옷이 없다.
-----------------------------
-(4.jpg) >>
-okay,
-we’ll
-sort that
-out.
--->
-좋아, 우리는 그것을 분류 할 것이다.
-----------------------------
-(5.jpg) >>
-you
-know
-what?
--->
-있잖아?
-----------------------------
-(6.jpg) >>
-
--->
-
-----------------------------
-(7.jpg) >>
-
--->
-
-----------------------------
-(8.jpg) >>
-
--->
-
-----------------------------
-(9.jpg) >>
-“all right,
-
-this isn’t working
-
-out. i’m going to
-need the suit
-
-. back. s
--->
-"좋아, 이건 잘 작동하지 않아. 나는 양복이 필요할거야. 뒤로. 에스
-----------------------------
-(10.jpg) >>
-and
-i wanted
-you to be
-better.
--->
-나는 네가 더 잘되기를 바랬다.
-----------------------------
-(11.jpg) >>
-i wanted
-to be like
-you.
--->
-나는 너처럼되고 싶었어.
-----------------------------
-(12.jpg) >>
-zip it! the
-adult is
-talking!
--->
-지퍼! 어른이 말하고있다!
-----------------------------
-(13.jpg) >>
-if someone had
-died today, that
-would have been
-" on you! /
--->
-누군가 오늘 죽었 더라면 그것은 "너 였을거야! /
-----------------------------
-(14.jpg) >>
-and if you had
-died, that would
-have been
-” on me. a
--->
-네가 죽었다면 그것은 나에게 있었을 것이다. 에이
-----------------------------
-(15.jpg) >>
-i'm
-fifteen
--->
-나는 15 살이다.
-----------------------------
-(16.jpg) >>
 those weapons were out
 there and i tried to tell
 you, but you didn’t
@@ -126,7 +16,7 @@ ia listen to me! a
 -->
 그 무기가 밖에 있었고 당신에게 말하려고했지만, 당신은 내 말을 들어주지 않았습니다! 에이
 ----------------------------
-(17.jpg) >>
+(3.jpg) >>
 " i did listen, ~
 kid. who do you
 think called
@@ -135,7 +25,7 @@ the fbiz tl
 -->
 "나는 들어 봤어, 꼬마 야. 누가 너를 fbiz tl이라고 생각하니?
 ----------------------------
-(18.jpg) >>
+(4.jpg) >>
 / everyone ~
 told me i
 was crazy
@@ -148,13 +38,123 @@ year-old
 -->
 / 모두 ~ 14 살짜리 7 키다를 모집하는 게 미쳤다고 했어.
 ----------------------------
-(19.jpg) >>
+(5.jpg) >>
+i'm
+fifteen
+-->
+나는 15 살이다.
+----------------------------
+(6.jpg) >>
+zip it! the
+adult is
+talking!
+-->
+지퍼! 어른이 말하고있다!
+----------------------------
+(7.jpg) >>
+if someone had
+died today, that
+would have been
+" on you! /
+-->
+누군가 오늘 죽었 더라면 그것은 "너 였을거야! /
+----------------------------
+(8.jpg) >>
+and if you had
+died, that would
+have been
+” on me. a
+-->
+네가 죽었다면 그것은 나에게 있었을 것이다. 에이
+----------------------------
+(9.jpg) >>
+i wanted
+to be like
+you.
+-->
+나는 너처럼되고 싶었어.
+----------------------------
+(10.jpg) >>
+and
+i wanted
+you to be
+better.
+-->
+나는 네가 더 잘되기를 바랬다.
+----------------------------
+(11.jpg) >>
+“all right,
+
+this isn’t working
+
+out. i’m going to
+need the suit
+
+. back. s
+-->
+"좋아, 이건 잘 작동하지 않아. 나는 양복이 필요할거야. 뒤로. 에스
+----------------------------
+(12.jpg) >>
 
 -->
 
 ----------------------------
-(20.jpg) >>
+(13.jpg) >>
 
 -->
 
+----------------------------
+(14.jpg) >>
+i don’t
+have any
+other
+clothes
+-->
+나는 다른 옷이 없다.
+----------------------------
+(15.jpg) >>
+okay,
+we’ll
+sort that
+out.
+-->
+좋아, 우리는 그것을 분류 할 것이다.
+----------------------------
+(16.jpg) >>
+you
+know
+what?
+-->
+있잖아?
+----------------------------
+(17.jpg) >>
+
+-->
+
+----------------------------
+(18.jpg) >>
+"no, please!
+it’s all i have! i’m
+nothing without
+- this suit! -
+-->
+"아니, 제발! 내가 가진 전부 야! 나는이 옷 없이는 아무것도 아니야! -
+----------------------------
+(19.jpg) >>
+f you're —
+nothing
+without
+
+the suit, you
+shouldn't
+have it.
+-->
+당신이 - 양복이 없다면 아무것도하지 말아야합니다.
+----------------------------
+(20.jpg) >>
+god,
+i sound
+like my
+-->
+세상에, 내 소리처럼 들린다.
 ----------------------------

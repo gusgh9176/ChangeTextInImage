@@ -296,10 +296,11 @@ for i in range(len(y)):
         text_rect_List.append(rectang(rect_List[i].x1, rect_List[i].y1, rect_List[i].x2, rect_List[i].y2))
         text_image_List.append(dst)
 
+
 for r1 in text_rect_List:
     img2 = cv2.rectangle(img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (255, 0, 0), 3)
-cv2.imshow("말풍선 판별", img2)
-cv2.waitKey(0)
+#cv2.imshow("말풍선 판별", img2)
+#cv2.waitKey(0)
 
 text_rect_List2=[]
 text_image_List2=[]
@@ -309,14 +310,11 @@ for r1 in text_rect_List:
         dst = src[r1.y1:r1.y2, r1.x1:r1.x2]
         #cv2.imshow("temp", dst)
         #cv2.waitKey(0)
-        print("point1")
         j=0
         for r2 in text_rect_List:
             if((r2.live==1)and(r1.live==1)and(i!=j)):
                 if(((r1.y1<r2.y2)and(r1.y2>r2.y1))and((r1.x1<r2.x2)and(r1.x2>r2.x1))):
-                    print("point2")
                     if(((min(r1.y2, r2.y2)-max(r1.y1, r2.y1))>(r1.y2-r1.y1)*0.7)and((min(r1.x2, r2.x2)-max(r1.x1, r2.x1))>(r1.y2-r1.y1)*0.7)):
-                        print("point3")
                         r1.live=0
                         r2.x1=min(r1.x1, r2.x1)
                         r2.x2=max(r1.x2, r2.x2)
@@ -331,13 +329,14 @@ for r1 in text_rect_List:
         text_rect_List2.append(r1)
         img2= cv2.rectangle(img2, (r1.x1, r1.y1), (r1.x2, r1.y2), (0, 255, 0), 3)
 
-count=0
+text_rect_List2.reverse()
 for r1 in text_rect_List2:
     dst = src[r1.y1:r1.y2, r1.x1:r1.x2]
     text_image_List2.append(dst)
+
 img2=cv2.pyrDown(img2)
 img2=cv2.pyrDown(img2)
-cv2.imshow("말풍선 중복 삭제", img2)
+cv2.imshow("blue=Abandoned  green=save", img2)
 cv2.waitKey(0)
 
 
@@ -460,7 +459,8 @@ for t_image in temp_image:
     fileName=str(i)
     outText = image_to_string(img, lang='eng')
     outText = outText.lower()
-
+    if (outText == ''):
+        continue
     print("("+t_image+") >>")
     print(outText)
 
