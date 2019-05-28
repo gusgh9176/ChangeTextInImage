@@ -14,6 +14,8 @@ pip install tensorflow
 pip install --upgrade numpy
 pip install pillow
 pip install pytesseract
+tesseract 따로 설치후 환경변수 설정 필요
+https://github.com/tesseract-ocr/tesseract/wiki
 
 ```
 
