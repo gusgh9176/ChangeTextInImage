@@ -96,3 +96,33 @@ keras 2.2.4
 5. ChangeTextInImage/text_Occur_module/
 
 >>4.1 text_Occur_module.py - keras를 이용하여 2차적으로 말풍선 내 문자열을 확인하고 filtering 하는 모델
+
+## module_link.py processing
+
+1.
+
+![1](./readme_image/1.jpg)
+
+2.
+
+![2](./readme_image/2.jpg)
+
+3.
+
+![3](./readme_image/3.jpg)
+
+4.
+
+![4](./readme_image/4.jpg)
+
+5.
+
+![5](./readme_image/5.jpg)
+
+6.
+
+![6](./readme_image/6.jpg)
+
+7.
+
+![7](./readme_image/7.jpg)
